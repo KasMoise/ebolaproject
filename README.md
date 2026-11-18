@@ -1,6 +1,6 @@
 # Ebola Bundibugyo 2026 (DRC) — Forecasting with Real Transfer Learning, a Spatio-Temporal GNN and Explainable AI
 
-A single Jupyter notebook, `Ebola_BDBV2026_complete_v3_3.ipynb`, that downloads the official surveillance data of the 2026 *Bundibugyo ebolavirus* (BDBV) outbreak in the Democratic Republic of the Congo, and benchmarks **22 forecasting models** of weekly new cases per health zone: naive references, classical machine learning, deep sequence models, **transfer learning pre-trained on real past outbreaks**, and a **spatio-temporal GraphSAGE** network. Results are explained with SHAP and LIME, evaluated against persistence with bootstrap intervals, and exported as figures, a LaTeX table and a JSON report.
+A single Jupyter notebook, `Ebola_BDBV2026.ipynb`, that downloads the official surveillance data of the 2026 *Bundibugyo ebolavirus* (BDBV) outbreak in the Democratic Republic of the Congo, and benchmarks **22 forecasting models** of weekly new cases per health zone: naive references, classical machine learning, deep sequence models, **transfer learning pre-trained on real past outbreaks**, and a **spatio-temporal GraphSAGE** network. Results are explained with SHAP and LIME, evaluated against persistence with bootstrap intervals, and exported as figures, a LaTeX table and a JSON report.
 
 > **Status:** research code. The numbers below come from one run of the notebook on a short chronological test window (7 weeks). Read them together with the [limitations](#limitations).
 
@@ -230,4 +230,4 @@ Working folders: `donnees_ebola/` (downloaded archives), `donnees_extraites/` (e
 - Seeds are fixed (`SEED = 42`); data release, source files and package versions are written to `outputs/reports/complete_report.json`.
 - **License:** _to be specified_ (check the terms of the INRB-UMIE repository and of the HDX datasets before redistributing data).
 - **Data credits:** INRB-UMIE (*BDBV2026-Data*); WHO / HDX (West Africa 2014-16 cases); North Kivu 2018-2020 epi-week table; Uganda Ministry of Health surveillance data (Sudan virus 2022).
-- **Author / contact:** _name, affiliation, e-mail_. Add a `CITATION.cff` or BibTeX entry when the manuscript is available.
+- **Author / contact:** MOISE KAMBALE KASAMBYA, University of the Philippines Diliman, mkkambale@up.edu.ph. 
