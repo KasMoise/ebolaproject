@@ -228,6 +228,7 @@ Working folders: `donnees_ebola/` (downloaded archives), `donnees_extraites/` (e
 ## Reproducibility, citation and license
 
 - Seeds are fixed (`SEED = 42`); data release, source files and package versions are written to `outputs/reports/complete_report.json`.
-- **License:** _to be specified_ (check the terms of the INRB-UMIE repository and of the HDX datasets before redistributing data).
+- **License:** The repository code is licensed under the terms in LICENSE. We do not claim ownership of or the right to license the third-party data or software tools used. Please pass forward any existing license/warranty/copyright information when redistributing.
+- THE DATA AND SOFTWARE ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.
 - **Data credits:** INRB-UMIE (*BDBV2026-Data*); WHO / HDX (West Africa 2014-16 cases); North Kivu 2018-2020 epi-week table; Uganda Ministry of Health surveillance data (Sudan virus 2022).
 - **Author / contact:** MOISE KAMBALE KASAMBYA, University of the Philippines Diliman, mkkambale@up.edu.ph. 
