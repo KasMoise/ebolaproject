@@ -1,0 +1,905 @@
+{
+  "title": "Ebola Bundibugyo 2026 (DRC) — Forecasting with real transfer learning, spatio-temporal GNN and XAI",
+  "date": "2026-11-18 09:47:15",
+  "version": "3.0",
+  "source": "INRB-UMIE BDBV2026-Data",
+  "provenance": {
+    "data_release": "build-2026-11-17-d796b0a",
+    "data_release_date": "2026-11-17",
+    "n_files_loaded": 8,
+    "zone_sum_vs_national": {
+      "zones_total": 11479.0,
+      "national_total": 11432.0,
+      "difference": 47.0
+    },
+    "historical_sources": {
+      "WestAfrica_2014": {
+        "kind": "real",
+        "file": "historical_data\\hdx\\ebola_data_db_format.csv"
+      },
+      "DRC_2018_Nord_Kivu": {
+        "kind": "real",
+        "file": "historical_data\\hdx\\dataonly_ebolaDRC.csv"
+      },
+      "Uganda_2022": {
+        "kind": "real",
+        "file": "historical_data\\hdx\\Surveillance_data_Ebola_outbreak.csv"
+      }
+    }
+  },
+  "package_versions": {
+    "python": "3.12.13",
+    "pandas": "3.0.3",
+    "numpy": "2.4.6",
+    "torch": "2.11.0+cpu"
+  },
+  "config": {
+    "resolution": "W",
+    "train_end": "2026-09-30",
+    "test_start": "2026-10-01",
+    "test_end": "2026-11-15",
+    "risk_pctile": 75,
+    "risk_threshold": 18.0,
+    "seq_len": 4,
+    "lags": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "rolls": [
+      2,
+      4
+    ],
+    "n_cv_folds": 4,
+    "n_bootstrap": 500,
+    "seed": 42,
+    "tl_seq_len": 6,
+    "tl_seeds": 3
+  },
+  "split": {
+    "train_rows": 855,
+    "test_rows": 499,
+    "train_end": "2026-09-27",
+    "test_start": "2026-10-04",
+    "test_end": "2026-11-15",
+    "risk_threshold": 18.0,
+    "resolution": "W"
+  },
+  "leakage_test_passed": true,
+  "persistence_rmse": 6.0852,
+  "best_learned_model": {
+    "Model": "TL-LSTM",
+    "RMSE": 5.7499,
+    "MAE": 2.6999,
+    "R2": 0.8571,
+    "Skill_vs_naive": 0.0551,
+    "F1": 0.6207,
+    "AUC": 0.954
+  },
+  "n_models_beating_persistence": 3,
+  "n_models_significantly_beating_persistence": 0,
+  "persistence_anchored_variants": [
+    "LightGBM_logdelta",
+    "LinearRegression_logdelta",
+    "RandomForest_logdelta",
+    "Ridge_logdelta",
+    "SVR_Linear_logdelta",
+    "SVR_RBF_logdelta",
+    "XGBoost_logdelta"
+  ],
+  "model_ranking": [
+    {
+      "Model": "TL-LSTM",
+      "RMSE": 5.7499,
+      "MAE": 2.6999,
+      "MAPE": 66.84,
+      "SMAPE": 126.52,
+      "RMSLE": 0.561,
+      "R2": 0.8571,
+      "Corr": 0.9264,
+      "Theil_U": 0.9449,
+      "Skill_vs_naive": 0.0551,
+      "Accuracy": 0.9339,
+      "Precision": 0.6429,
+      "Recall": 0.6,
+      "F1": 0.6207,
+      "AUC": 0.954,
+      "Family": "transfer",
+      "Skill_CI_low": -0.022,
+      "Skill_CI_high": 0.118,
+      "P_skill_gt0": 0.923
+    },
+    {
+      "Model": "LightGBM_logdelta",
+      "RMSE": 5.8941,
+      "MAE": 2.7965,
+      "MAPE": 73.07,
+      "SMAPE": 129.83,
+      "RMSLE": 0.5732,
+      "R2": 0.8499,
+      "Corr": 0.923,
+      "Theil_U": 0.9686,
+      "Skill_vs_naive": 0.0314,
+      "Accuracy": 0.9399,
+      "Precision": 0.6829,
+      "Recall": 0.6222,
+      "F1": 0.6512,
+      "AUC": 0.9508,
+      "Family": "classical",
+      "Skill_CI_low": -0.031,
+      "Skill_CI_high": 0.106,
+      "P_skill_gt0": 0.801
+    },
+    {
+      "Model": "ST-GNN-GraphSAGE",
+      "RMSE": 6.0304,
+      "MAE": 2.8118,
+      "MAPE": 78.81,
+      "SMAPE": 79.1,
+      "RMSLE": 0.6142,
+      "R2": 0.8429,
+      "Corr": 0.9198,
+      "Theil_U": 0.991,
+      "Skill_vs_naive": 0.009,
+      "Accuracy": 0.9439,
+      "Precision": 0.7179,
+      "Recall": 0.6222,
+      "F1": 0.6667,
+      "AUC": 0.9517,
+      "Family": "graph",
+      "Skill_CI_low": -0.072,
+      "Skill_CI_high": 0.084,
+      "P_skill_gt0": 0.624
+    },
+    {
+      "Model": "Naive_lag1",
+      "RMSE": 6.0852,
+      "MAE": 2.8537,
+      "MAPE": 83.3,
+      "SMAPE": 56.15,
+      "RMSLE": 0.6144,
+      "R2": 0.84,
+      "Corr": 0.9189,
+      "Theil_U": 1.0,
+      "Skill_vs_naive": 0.0,
+      "Accuracy": 0.9359,
+      "Precision": 0.6444,
+      "Recall": 0.6444,
+      "F1": 0.6444,
+      "AUC": 0.9496,
+      "Family": "naive",
+      "Skill_CI_low": 0.0,
+      "Skill_CI_high": 0.0,
+      "P_skill_gt0": 0.0
+    },
+    {
+      "Model": "Naive_roll_mean_4",
+      "RMSE": 6.0909,
+      "MAE": 2.8948,
+      "MAPE": 76.54,
+      "SMAPE": 73.38,
+      "RMSLE": 0.6018,
+      "R2": 0.8397,
+      "Corr": 0.9164,
+      "Theil_U": 1.0009,
+      "Skill_vs_naive": -0.0009,
+      "Accuracy": 0.9319,
+      "Precision": 0.6122,
+      "Recall": 0.6667,
+      "F1": 0.6383,
+      "AUC": 0.9515,
+      "Family": "naive",
+      "Skill_CI_low": -0.122,
+      "Skill_CI_high": 0.116,
+      "P_skill_gt0": 0.473
+    },
+    {
+      "Model": "SVR_Linear",
+      "RMSE": 6.187,
+      "MAE": 2.8205,
+      "MAPE": 66.38,
+      "SMAPE": 60.39,
+      "RMSLE": 0.6539,
+      "R2": 0.8346,
+      "Corr": 0.932,
+      "Theil_U": 1.0167,
+      "Skill_vs_naive": -0.0167,
+      "Accuracy": 0.9499,
+      "Precision": 0.8125,
+      "Recall": 0.5778,
+      "F1": 0.6753,
+      "AUC": 0.9529,
+      "Family": "classical",
+      "Skill_CI_low": -0.11,
+      "Skill_CI_high": 0.097,
+      "P_skill_gt0": 0.343
+    },
+    {
+      "Model": "LSTM",
+      "RMSE": 6.249,
+      "MAE": 2.7675,
+      "MAPE": 65.41,
+      "SMAPE": 116.49,
+      "RMSLE": 0.5558,
+      "R2": 0.8313,
+      "Corr": 0.9286,
+      "Theil_U": 1.0269,
+      "Skill_vs_naive": -0.0269,
+      "Accuracy": 0.9419,
+      "Precision": 0.7222,
+      "Recall": 0.5778,
+      "F1": 0.642,
+      "AUC": 0.9532,
+      "Family": "deep",
+      "Skill_CI_low": -0.157,
+      "Skill_CI_high": 0.133,
+      "P_skill_gt0": 0.331
+    },
+    {
+      "Model": "Transformer",
+      "RMSE": 6.3957,
+      "MAE": 2.9592,
+      "MAPE": 69.74,
+      "SMAPE": 128.32,
+      "RMSLE": 0.569,
+      "R2": 0.8232,
+      "Corr": 0.9112,
+      "Theil_U": 1.051,
+      "Skill_vs_naive": -0.051,
+      "Accuracy": 0.9339,
+      "Precision": 0.6364,
+      "Recall": 0.6222,
+      "F1": 0.6292,
+      "AUC": 0.9473,
+      "Family": "deep",
+      "Skill_CI_low": -0.162,
+      "Skill_CI_high": 0.085,
+      "P_skill_gt0": 0.208
+    },
+    {
+      "Model": "ST-GRU-NoGraph",
+      "RMSE": 6.4519,
+      "MAE": 2.9131,
+      "MAPE": 70.73,
+      "SMAPE": 88.78,
+      "RMSLE": 0.5952,
+      "R2": 0.8201,
+      "Corr": 0.9165,
+      "Theil_U": 1.0603,
+      "Skill_vs_naive": -0.0603,
+      "Accuracy": 0.9419,
+      "Precision": 0.7667,
+      "Recall": 0.5111,
+      "F1": 0.6133,
+      "AUC": 0.9517,
+      "Family": "graph",
+      "Skill_CI_low": -0.156,
+      "Skill_CI_high": 0.033,
+      "P_skill_gt0": 0.104
+    },
+    {
+      "Model": "Ridge",
+      "RMSE": 6.4933,
+      "MAE": 2.9541,
+      "MAPE": 71.85,
+      "SMAPE": 83.48,
+      "RMSLE": 0.6788,
+      "R2": 0.8178,
+      "Corr": 0.9214,
+      "Theil_U": 1.0671,
+      "Skill_vs_naive": -0.0671,
+      "Accuracy": 0.9519,
+      "Precision": 0.8,
+      "Recall": 0.6222,
+      "F1": 0.7,
+      "AUC": 0.9547,
+      "Family": "classical",
+      "Skill_CI_low": -0.19,
+      "Skill_CI_high": 0.088,
+      "P_skill_gt0": 0.175
+    },
+    {
+      "Model": "LinearRegression",
+      "RMSE": 6.5098,
+      "MAE": 2.9637,
+      "MAPE": 71.91,
+      "SMAPE": 86.88,
+      "RMSLE": 0.6793,
+      "R2": 0.8169,
+      "Corr": 0.9211,
+      "Theil_U": 1.0698,
+      "Skill_vs_naive": -0.0698,
+      "Accuracy": 0.9519,
+      "Precision": 0.8,
+      "Recall": 0.6222,
+      "F1": 0.7,
+      "AUC": 0.9543,
+      "Family": "classical",
+      "Skill_CI_low": -0.195,
+      "Skill_CI_high": 0.087,
+      "P_skill_gt0": 0.168
+    },
+    {
+      "Model": "SVR_Linear_logdelta",
+      "RMSE": 7.277,
+      "MAE": 2.8758,
+      "MAPE": 62.5,
+      "SMAPE": 62.24,
+      "RMSLE": 0.5727,
+      "R2": 0.7712,
+      "Corr": 0.9128,
+      "Theil_U": 1.1958,
+      "Skill_vs_naive": -0.1958,
+      "Accuracy": 0.9459,
+      "Precision": 0.7647,
+      "Recall": 0.5778,
+      "F1": 0.6582,
+      "AUC": 0.9535,
+      "Family": "classical",
+      "Skill_CI_low": -0.363,
+      "Skill_CI_high": 0.0,
+      "P_skill_gt0": 0.025
+    },
+    {
+      "Model": "RandomForest_logdelta",
+      "RMSE": 7.4167,
+      "MAE": 3.1187,
+      "MAPE": 66.15,
+      "SMAPE": 127.07,
+      "RMSLE": 0.5912,
+      "R2": 0.7623,
+      "Corr": 0.9093,
+      "Theil_U": 1.2188,
+      "Skill_vs_naive": -0.2188,
+      "Accuracy": 0.9439,
+      "Precision": 0.7931,
+      "Recall": 0.5111,
+      "F1": 0.6216,
+      "AUC": 0.9435,
+      "Family": "classical",
+      "Skill_CI_low": -0.355,
+      "Skill_CI_high": -0.038,
+      "P_skill_gt0": 0.007
+    },
+    {
+      "Model": "RandomForest",
+      "RMSE": 7.4168,
+      "MAE": 3.598,
+      "MAPE": 110.36,
+      "SMAPE": 130.79,
+      "RMSLE": 0.7148,
+      "R2": 0.7623,
+      "Corr": 0.8899,
+      "Theil_U": 1.2188,
+      "Skill_vs_naive": -0.2188,
+      "Accuracy": 0.9178,
+      "Precision": 0.54,
+      "Recall": 0.6,
+      "F1": 0.5684,
+      "AUC": 0.9403,
+      "Family": "classical",
+      "Skill_CI_low": -0.412,
+      "Skill_CI_high": 0.012,
+      "P_skill_gt0": 0.032
+    },
+    {
+      "Model": "XGBoost_logdelta",
+      "RMSE": 7.4902,
+      "MAE": 3.2515,
+      "MAPE": 70.85,
+      "SMAPE": 84.29,
+      "RMSLE": 0.6158,
+      "R2": 0.7576,
+      "Corr": 0.8931,
+      "Theil_U": 1.2309,
+      "Skill_vs_naive": -0.2309,
+      "Accuracy": 0.9459,
+      "Precision": 0.7812,
+      "Recall": 0.5556,
+      "F1": 0.6494,
+      "AUC": 0.9344,
+      "Family": "classical",
+      "Skill_CI_low": -0.392,
+      "Skill_CI_high": -0.019,
+      "P_skill_gt0": 0.014
+    },
+    {
+      "Model": "LSTM-Univariate-Scratch",
+      "RMSE": 7.9055,
+      "MAE": 3.1565,
+      "MAPE": 58.41,
+      "SMAPE": 123.46,
+      "RMSLE": 0.563,
+      "R2": 0.7299,
+      "Corr": 0.9319,
+      "Theil_U": 1.2991,
+      "Skill_vs_naive": -0.2991,
+      "Accuracy": 0.9499,
+      "Precision": 0.8846,
+      "Recall": 0.5111,
+      "F1": 0.6479,
+      "AUC": 0.9566,
+      "Family": "deep",
+      "Skill_CI_low": -0.408,
+      "Skill_CI_high": -0.139,
+      "P_skill_gt0": 0.001
+    },
+    {
+      "Model": "XGBoost",
+      "RMSE": 8.0064,
+      "MAE": 3.6591,
+      "MAPE": 91.93,
+      "SMAPE": 125.79,
+      "RMSLE": 0.6771,
+      "R2": 0.723,
+      "Corr": 0.8735,
+      "Theil_U": 1.3157,
+      "Skill_vs_naive": -0.3157,
+      "Accuracy": 0.9218,
+      "Precision": 0.5682,
+      "Recall": 0.5556,
+      "F1": 0.5618,
+      "AUC": 0.9362,
+      "Family": "classical",
+      "Skill_CI_low": -0.498,
+      "Skill_CI_high": -0.098,
+      "P_skill_gt0": 0.002
+    },
+    {
+      "Model": "Ridge_logdelta",
+      "RMSE": 8.6934,
+      "MAE": 3.2257,
+      "MAPE": 67.72,
+      "SMAPE": 119.94,
+      "RMSLE": 0.578,
+      "R2": 0.6734,
+      "Corr": 0.864,
+      "Theil_U": 1.4286,
+      "Skill_vs_naive": -0.4286,
+      "Accuracy": 0.9439,
+      "Precision": 0.7297,
+      "Recall": 0.6,
+      "F1": 0.6585,
+      "AUC": 0.9527,
+      "Family": "classical",
+      "Skill_CI_low": -0.653,
+      "Skill_CI_high": -0.15,
+      "P_skill_gt0": 0.001
+    },
+    {
+      "Model": "LinearRegression_logdelta",
+      "RMSE": 8.7204,
+      "MAE": 3.2339,
+      "MAPE": 67.82,
+      "SMAPE": 121.13,
+      "RMSLE": 0.5783,
+      "R2": 0.6714,
+      "Corr": 0.8627,
+      "Theil_U": 1.433,
+      "Skill_vs_naive": -0.433,
+      "Accuracy": 0.9439,
+      "Precision": 0.7297,
+      "Recall": 0.6,
+      "F1": 0.6585,
+      "AUC": 0.9527,
+      "Family": "classical",
+      "Skill_CI_low": -0.658,
+      "Skill_CI_high": -0.153,
+      "P_skill_gt0": 0.001
+    },
+    {
+      "Model": "SVR_RBF_logdelta",
+      "RMSE": 8.7612,
+      "MAE": 3.4974,
+      "MAPE": 77.6,
+      "SMAPE": 117.54,
+      "RMSLE": 0.5969,
+      "R2": 0.6683,
+      "Corr": 0.8208,
+      "Theil_U": 1.4397,
+      "Skill_vs_naive": -0.4397,
+      "Accuracy": 0.9379,
+      "Precision": 0.7059,
+      "Recall": 0.5333,
+      "F1": 0.6076,
+      "AUC": 0.9383,
+      "Family": "classical",
+      "Skill_CI_low": -0.608,
+      "Skill_CI_high": -0.274,
+      "P_skill_gt0": 0.0
+    },
+    {
+      "Model": "SVR_RBF",
+      "RMSE": 8.9949,
+      "MAE": 4.4576,
+      "MAPE": 96.89,
+      "SMAPE": 124.97,
+      "RMSLE": 0.9221,
+      "R2": 0.6504,
+      "Corr": 0.8074,
+      "Theil_U": 1.4781,
+      "Skill_vs_naive": -0.4781,
+      "Accuracy": 0.9259,
+      "Precision": 0.5741,
+      "Recall": 0.6889,
+      "F1": 0.6263,
+      "AUC": 0.9166,
+      "Family": "classical",
+      "Skill_CI_low": -0.707,
+      "Skill_CI_high": -0.215,
+      "P_skill_gt0": 0.0
+    },
+    {
+      "Model": "LightGBM",
+      "RMSE": 9.075,
+      "MAE": 5.4995,
+      "MAPE": 143.88,
+      "SMAPE": 130.29,
+      "RMSLE": 1.2373,
+      "R2": 0.6441,
+      "Corr": 0.9209,
+      "Theil_U": 1.4913,
+      "Skill_vs_naive": -0.4913,
+      "Accuracy": 0.9499,
+      "Precision": 0.8571,
+      "Recall": 0.5333,
+      "F1": 0.6575,
+      "AUC": 0.9517,
+      "Family": "classical",
+      "Skill_CI_low": -0.648,
+      "Skill_CI_high": -0.328,
+      "P_skill_gt0": 0.0
+    }
+  ],
+  "statistical_tests": {
+    "daily_ADF_stat": -2.7086,
+    "daily_ADF_pval": 0.0726,
+    "daily_LjungBox_sig_lags": [
+      1,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "daily_Shapiro_stat": 0.7785,
+    "daily_Shapiro_pval": 0.0,
+    "weekly_ADF_stat": -9.6662,
+    "weekly_ADF_pval": 0.0,
+    "weekly_LjungBox_sig_lags": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "weekly_Shapiro_stat": 0.942,
+    "weekly_Shapiro_pval": 0.15
+  },
+  "cv_results": [
+    {
+      "Model": "RandomForest",
+      "RMSE_mean": 14.0611,
+      "RMSE_std": 1.9863,
+      "R2_mean": 0.4939,
+      "R2_std": 0.1946,
+      "Skill_mean": -0.0506
+    },
+    {
+      "Model": "SVR_Linear",
+      "RMSE_mean": 14.1221,
+      "RMSE_std": 3.3957,
+      "R2_mean": 0.5408,
+      "R2_std": 0.0267,
+      "Skill_mean": 0.0117
+    },
+    {
+      "Model": "XGBoost",
+      "RMSE_mean": 14.2074,
+      "RMSE_std": 2.5437,
+      "R2_mean": 0.5117,
+      "R2_std": 0.1059,
+      "Skill_mean": -0.0305
+    },
+    {
+      "Model": "Ridge",
+      "RMSE_mean": 14.414,
+      "RMSE_std": 2.8479,
+      "R2_mean": 0.5064,
+      "R2_std": 0.0699,
+      "Skill_mean": -0.0315
+    },
+    {
+      "Model": "LightGBM_logdelta",
+      "RMSE_mean": 14.5158,
+      "RMSE_std": 4.3204,
+      "R2_mean": 0.5259,
+      "R2_std": 0.0982,
+      "Skill_mean": 0.0191
+    },
+    {
+      "Model": "Naive_lag1",
+      "RMSE_mean": 14.9616,
+      "RMSE_std": 4.7462,
+      "R2_mean": 0.4989,
+      "R2_std": 0.125,
+      "Skill_mean": 0.0
+    },
+    {
+      "Model": "LightGBM",
+      "RMSE_mean": 15.475,
+      "RMSE_std": 3.9542,
+      "R2_mean": 0.4444,
+      "R2_std": 0.1343,
+      "Skill_mean": -0.0662
+    },
+    {
+      "Model": "XGBoost_logdelta",
+      "RMSE_mean": 15.5141,
+      "RMSE_std": 4.4864,
+      "R2_mean": 0.4467,
+      "R2_std": 0.1447,
+      "Skill_mean": -0.0594
+    },
+    {
+      "Model": "SVR_RBF",
+      "RMSE_mean": 15.9908,
+      "RMSE_std": 2.0118,
+      "R2_mean": 0.3367,
+      "R2_std": 0.2833,
+      "Skill_mean": -0.2031
+    },
+    {
+      "Model": "RandomForest_logdelta",
+      "RMSE_mean": 16.1182,
+      "RMSE_std": 5.2154,
+      "R2_mean": 0.404,
+      "R2_std": 0.2069,
+      "Skill_mean": -0.0801
+    },
+    {
+      "Model": "SVR_RBF_logdelta",
+      "RMSE_mean": 17.0486,
+      "RMSE_std": 2.7643,
+      "R2_mean": 0.2914,
+      "R2_std": 0.1478,
+      "Skill_mean": -0.2383
+    },
+    {
+      "Model": "LinearRegression",
+      "RMSE_mean": 24.4545,
+      "RMSE_std": 16.3571,
+      "R2_mean": -1.3038,
+      "R2_std": 3.0965,
+      "Skill_mean": -0.731
+    },
+    {
+      "Model": "Ridge_logdelta",
+      "RMSE_mean": 26.4781,
+      "RMSE_std": 20.549,
+      "R2_mean": -1.9748,
+      "R2_std": 4.3455,
+      "Skill_mean": -0.8216
+    },
+    {
+      "Model": "LinearRegression_logdelta",
+      "RMSE_mean": 28.2922,
+      "RMSE_std": 23.0837,
+      "R2_mean": -2.5513,
+      "R2_std": 5.3044,
+      "Skill_mean": -0.946
+    },
+    {
+      "Model": "SVR_Linear_logdelta",
+      "RMSE_mean": 29.4022,
+      "RMSE_std": 16.1269,
+      "R2_mean": -2.0862,
+      "R2_std": 3.5517,
+      "Skill_mean": -1.1737
+    }
+  ],
+  "forecast": {
+    "model": "LightGBM_logdelta",
+    "resolution": "W",
+    "n_paths": 500,
+    "uncertainty": "out-of-fold Pearson residuals, period-block bootstrap (correlated across zones)",
+    "dates": [
+      "2026-11-22",
+      "2026-11-29",
+      "2026-12-06",
+      "2026-12-13"
+    ],
+    "median": [
+      496.21,
+      682.31,
+      888.75,
+      1017.61
+    ],
+    "mean": [
+      653.7,
+      825.77,
+      1035.27,
+      1212.5
+    ],
+    "lower": [
+      438.98,
+      472.03,
+      501.78,
+      559.16
+    ],
+    "upper": [
+      1285.51,
+      1632.06,
+      2374.76,
+      2796.02
+    ],
+    "deterministic": [
+      419.16,
+      403.71,
+      391.18,
+      382.3
+    ]
+  },
+  "transfer_learning": {
+    "sources": {
+      "WestAfrica_2014": {
+        "kind": "real",
+        "file": "historical_data\\hdx\\ebola_data_db_format.csv"
+      },
+      "DRC_2018_Nord_Kivu": {
+        "kind": "real",
+        "file": "historical_data\\hdx\\dataonly_ebolaDRC.csv"
+      },
+      "Uganda_2022": {
+        "kind": "real",
+        "file": "historical_data\\hdx\\Surveillance_data_Ebola_outbreak.csv"
+      }
+    },
+    "label": "TL-LSTM",
+    "seed_summary": [
+      {
+        "model": "scratch",
+        "mean": 6.7016,
+        "std": 1.1468
+      },
+      {
+        "model": "transfer",
+        "mean": 5.792,
+        "std": 0.0374
+      }
+    ],
+    "leave_one_outbreak_out": [
+      {
+        "held_out": "DRC_2018_Nord_Kivu",
+        "kind": "real",
+        "n_windows": 900,
+        "RMSE_model": 0.5048,
+        "RMSE_persistence": 0.5216,
+        "skill": 0.032
+      },
+      {
+        "held_out": "Uganda_2022",
+        "kind": "real",
+        "n_windows": 13,
+        "RMSE_model": 0.268,
+        "RMSE_persistence": 0.2314,
+        "skill": -0.158
+      },
+      {
+        "held_out": "WestAfrica_2014",
+        "kind": "real",
+        "n_windows": 224,
+        "RMSE_model": 0.2741,
+        "RMSE_persistence": 0.2987,
+        "skill": 0.082
+      }
+    ],
+    "fewshot_ablation_mean_rmse": [
+      {
+        "K": 2,
+        "model": "scratch",
+        "RMSE": 12.2493
+      },
+      {
+        "K": 2,
+        "model": "transfer",
+        "RMSE": 9.3947
+      },
+      {
+        "K": 4,
+        "model": "scratch",
+        "RMSE": 13.3435
+      },
+      {
+        "K": 4,
+        "model": "transfer",
+        "RMSE": 12.1654
+      },
+      {
+        "K": 6,
+        "model": "scratch",
+        "RMSE": 20.1344
+      },
+      {
+        "K": 6,
+        "model": "transfer",
+        "RMSE": 20.0205
+      },
+      {
+        "K": 8,
+        "model": "scratch",
+        "RMSE": 17.605
+      },
+      {
+        "K": 8,
+        "model": "transfer",
+        "RMSE": 17.0757
+      },
+      {
+        "K": 12,
+        "model": "scratch",
+        "RMSE": 16.3191
+      },
+      {
+        "K": 12,
+        "model": "transfer",
+        "RMSE": 16.1461
+      },
+      {
+        "K": 16,
+        "model": "scratch",
+        "RMSE": 8.7217
+      },
+      {
+        "K": 16,
+        "model": "transfer",
+        "RMSE": 7.9892
+      }
+    ]
+  },
+  "graph": {
+    "geo_source": "polygons",
+    "n_geo": 135,
+    "n_sim": 112,
+    "n_edges": 228,
+    "isolated": 3
+  },
+  "run_status": {
+    "tl_pretraining": "ok",
+    "lstm": "ok",
+    "transformer": "ok",
+    "transfer_learning": "ok",
+    "tl_fewshot_ablation": "ok",
+    "ST-GNN-GraphSAGE": "ok",
+    "ST-GRU-NoGraph": "ok",
+    "shap": "ok",
+    "lime": "ok",
+    "forecast": "ok"
+  },
+  "figures": [
+    "01_eda_national.png",
+    "02_top_zones.png",
+    "03_acf_pacf.png",
+    "04_historical_outbreaks.png",
+    "04b_tl_leave_one_outbreak_out.png",
+    "05_pretrain_loss.png",
+    "06_gnn_results.png",
+    "07_shap_comparison.png",
+    "08_lime_explanations.png",
+    "09_complete_dashboard.png",
+    "10_pred_vs_actual.png",
+    "10b_national_weekly_fit.png",
+    "11_residuals_LightGBM_logdelta.png",
+    "12_probabilistic_forecast.png",
+    "13_geo_points_map.png",
+    "14_drc_choropleth_map.png",
+    "16_tl_fewshot_ablation.png"
+  ]
+}
